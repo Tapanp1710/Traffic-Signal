@@ -40,7 +40,7 @@ class TrafficEnvironment:
         self.time_step += 1
         self.prev_queue = self.queue.copy()
 
-        # ✅ Initialize ALL reward components safely
+        # Initialize rewards
         waiting_penalty = 0
         throughput_bonus = 0
         queue_bonus = 0
@@ -57,7 +57,6 @@ class TrafficEnvironment:
         if self.green_time < self.min_green:
             action = self.current_green
 
-        # Handle switching BEFORE updating current_green
         switching = (action != self.current_green)
 
         if switching:
@@ -87,28 +86,26 @@ class TrafficEnvironment:
         self.total_waiting_time += waiting_time
 
         self.episode_queue_history.append(self.queue.copy())
-
         next_state = self.get_state()
 
         # ------------------ REWARD FUNCTION ------------------
 
         # Queue reduction bonus
         queue_reduction = sum(self.prev_queue) - sum(self.queue)
-        queue_bonus = max(0, queue_reduction * 2)
+        queue_bonus = max(0, queue_reduction * 3)
 
         # Throughput bonus
-        throughput_bonus = cars_departed * 35
+        throughput_bonus = cars_departed * 45
 
-        # Fairness bonus
-        queue_values = sorted(self.queue)
-        queue_spread = queue_values[-1] - queue_values[0]
-        if queue_spread <= 2:
-            fairness_bonus = 4
-        elif queue_spread <= 5:
-            fairness_bonus = 2
+        # ✅ NEW SAFE FAIRNESS (continuous, low impact)
+        avg_q = sum(self.queue) / len(self.queue)
+        imbalance = sum(abs(q - avg_q) for q in self.queue)
 
-        # Waiting penalty
-        waiting_penalty = waiting_time * 0.5
+        # Lower imbalance → higher reward (scaled safely)
+        fairness_bonus = max(0, 6 - imbalance * 0.5)
+
+        # Waiting penalty (MOST IMPORTANT)
+        waiting_penalty = waiting_time * 0.45
 
         # Target road bonus
         max_queue = max(self.queue)
@@ -119,16 +116,15 @@ class TrafficEnvironment:
         total_queue = sum(self.queue)
         queue_control_bonus = max(0, (12 - total_queue) * 1.2)
 
-        # Clear bonus (FIXED BUG HERE)
+        # Clear bonus
         if cars_departed > 0 and self.queue[self.current_green] == 0:
-            clear_bonus = 10
+            clear_bonus = 12
 
-        # Switch penalty (corrected logic)
+        # Switch penalty
         if switching:
             if self.queue[action] < max_queue * 0.6:
                 switch_penalty = 2
 
-        # Final reward
         reward = (
             -waiting_penalty
             + throughput_bonus
