@@ -1,0 +1,152 @@
+<html><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" ,content="width=device-width, initial-scale=1.0">
+        <title> My Portfolio </title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            header h1{
+                text-align: center;
+                border: 2px solid rgb(3, 3, 3);
+                border-radius: 5px;;
+                padding:10px;
+                position: relative;
+                margin-left: 400px;
+                margin-right: 400px;
+                margin-top: 35px;
+                background-color: rgb(8, 8, 8);
+            }
+
+            #About{
+                margin-left: 25px;
+            }
+
+            .button{
+                background-color:rgb(26, 106, 153);
+                text-align: left;
+                font-size: large;
+                border: 2px solid grey;
+                padding:7px;
+                padding-left: 15px;
+                padding-right: 15px;
+                margin-right: 30px;
+            }
+            .button:hover{
+                background-color: rgb(15, 15, 121);
+            }
+            .buttons{
+                text-align: center;
+                padding:25px;
+                background-color: rgb(14, 13, 13); 
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+        <div class="buttons">
+        <a href="">
+            <button id="About" class="button">
+                About
+            </button>
+        </a>
+        <a href="">
+            <button class="button">
+                Skills
+            </button>
+        </a>
+        <a href="">
+            <button class="button">
+                Projects
+            </button>
+        </a>
+        <a href="">
+            <button class="button">
+                Contact
+            </button>
+        </a>
+        </div>
+
+        <h1 style="font-family:Franklin Gothic Medium" ;=""> Welcome to my Portfolio </h1>
+        <div id="photoo">
+        <img class="photo" src="images/maroon.jpeg" alt="">
+        <img class="potrait" src="images/photo.jpg" alt="">
+        <img class="photo" src="images/maroon2.jpeg" alt="">
+        </div>
+
+
+        
+
+        </header>
+
+        <main>
+            <section id="Aboutt">
+            
+              <div id="details">
+
+              <h1>Nithin Kolanu</h1>
+
+              <p>I am a passionate web developer</p>
+              <p>I am currently pursuing my btech at <em>Anurag University</em></p>
+              <p>You can click <a href=""><strong>here</strong></a> to checkout what I am good at.</p>
+              <img id="detailsphoto" src="images/maroon2.jpeg" alt="">
+
+              </div>
+
+            </section>
+
+            <section id="Skills">
+
+              <h1 style="text-decoration: underline;">My Skills: </h1>
+
+              <ol>
+                 <li>Python</li>
+                 <li>SQL</li>
+                 <li>Html</li>
+                 <li>Css</li>
+                 <li>PowerBi</li>
+                 <li>Machine Learning</li>
+              </ol>
+
+            </section>
+
+            <section id="Contact">
+
+            <h1 style="text-decoration: underline;">Contact:</h1>
+            <p>Feel free to get in touch with me through the form below:</p>
+            <form>
+               <label for="name">Name:</label>
+               <input type="text" id="name">
+               <br>
+               <label for="email">Email:</label>
+               <input type="email" id="email">
+               <br>
+               <b>Choose your gender:</b>
+               <input type="radio" name="gender" value="male" id="male">
+               <label for="male">Male</label>
+               <input type="radio" name="gender" value="female" id="female">
+               <label for="female">Female</label>
+               <br>
+               <b>Select your interests:</b>
+               <input type="checkbox" value="coding" id="coding">
+               <label for="coding">Coding</label>
+               <input type="checkbox" value="non-coding" id="non-coding">
+               <label for="non-coding">Non Coding</label>
+               <br>
+               <label for="req">Requirements:</label>
+               <input type="text" id="req">
+               <br>
+               <button class="submit" type="submit">Submit</button>
+            </form>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>My Portfolio</p>
+        </footer>
+    <script src="script.js"></script>    
+    
+
+</body></html>

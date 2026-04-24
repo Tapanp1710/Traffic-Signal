@@ -1,0 +1,1 @@
+{"alpha": 0.009960579912979325, "gamma": 0.95, "epsilon": 0.00998645168764533, "epsilon_min": 0.01, "epsilon_decay": 0.995, "alpha_decay": 0.9999, "use_double_q": true, "use_softmax": false, "temperature": 1.0}

@@ -1,0 +1,4 @@
+Metric,RL Agent,Fixed-Time Baseline
+Average Reward,-299.33,-313.82
+Average Fairness,18.869375,19.21625
+Average Throughput,0.44,0.49
